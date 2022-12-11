@@ -70,120 +70,40 @@
 			<div class="filters">
 				<ul>
 					<li class="active" data-filter="*">All</li>
-					<li data-filter=".packaging">API</li>
-					<li data-filter=".mockup">Mockup</li>
-					<li data-filter=".typography">Typography</li>
-					<li data-filter=".photography">Photography</li>
+					<li data-filter=".API">API</li>
+					<li data-filter=".django">Django</li>
+					<li data-filter=".flask">Flask</li>
+					<li data-filter=".scripts">Scripts</li>
 				</ul>
 			</div>
+<!--Proyectos-->
 
 			<div class="filters-content">
 				<div class="row grid">
-					<div class="single-portfolio col-sm-4 all mockup">
+                    {% for project in projects %}
+					<div class="single-portfolio col-sm-4 all {{ project.tags }}"> <!-- cambiar la clase para filtrar -->
 						<div class="relative">
 							<div class="thumb">
 								<div class="overlay overlay-bg"></div>
-								<img class="image img-fluid" src="{% static 'core/images/p1.jpg' %}" alt="">
+								<img class="image img-fluid" src="{{ project.image_url }}" alt="">
 							</div>
 							<a href="{% static 'core/images/p1.jpg' %}" class="img-pop-up">
 								<div class="middle">
-									<div class="text align-self-center d-flex"><img src="{% static 'core/images/preview.png' %}" alt=""></div>
+									<div class="text align-self-center d-flex"><img src="" alt=""></div>
 								</div>
-							</a>                                  
+							</a>
 						</div>
 						<div class="p-inner">
-							<h4>Square Box Mockup</h4>
-							<div class="cat">Mockup</div>
-						</div>                                         
-					</div>
-					<div class="single-portfolio col-sm-4 all mockup">
-						<div class="relative">
-							<div class="thumb">
-								<div class="overlay overlay-bg"></div>
-								<img class="image img-fluid" src="{% static 'core/images/p2.jpg' %}" alt="">
-							</div>
-							<a href="{% static 'core/images/p2.jpg' %}" class="img-pop-up">
-								<div class="middle">
-									<div class="text align-self-center d-flex"><img src="{% static 'core/images/preview.png' %}" alt=""></div>
-								</div>
-							</a>                                  
-						</div>
-						<div class="p-inner">
-							<h4>Product Box Package Mockup</h4>
-							<div class="cat">Mockup</div>
-						</div>                                         
-					</div>                            
-					<div class="single-portfolio col-sm-4 all packaging">
-						<div class="relative">
-							<div class="thumb">
-								<div class="overlay overlay-bg"></div>
-								<img class="image img-fluid" src="{% static 'core/images/p3.jpg' %}" alt="">
-							</div>
-							<a href="{% static 'core/images/p3.jpg' %}" class="img-pop-up">
-								<div class="middle">
-									<div class="text align-self-center d-flex"><img src="images/preview.png" alt=""></div>
-								</div>
-							</a> 
+							<h4>{{ project.title }}</h4>
+							<div class="cat">{{ project.tags }}</div>
 
 						</div>
-						<div class="p-inner">
-							<h4>Creative Package Design</h4>
-							<div class="cat">Packaging</div>
-						</div>
+
 					</div>
-					<div class="single-portfolio col-sm-4 all packaging">
-						<div class="relative">
-							<div class="thumb">
-								<div class="overlay overlay-bg"></div>
-								<img class="image img-fluid" src="{% static 'core/images/p4.jpg' %}" alt="">
-							</div>
-							<a href="{% static 'core/images/p4.jpg' %}" class="img-pop-up">
-								<div class="middle">
-									<div class="text align-self-center d-flex"><img src="images/preview.png" alt=""></div>
-								</div>
-							</a>                                
-						</div> 
-						<div class="p-inner">
-							<h4>Packaging Brand</h4>
-							<div class="cat">Packaging</div>
-						</div>
-					</div>
-					<div class="single-portfolio col-sm-4 all typography">
-						<div class="relative">
-							<div class="thumb">
-								<div class="overlay overlay-bg"></div>
-								<img class="image img-fluid" src="{% static 'core/images/p5.jpg' %}" alt="">
-							</div>
-							<a href="{% static 'core/images/p5.jpg' %}" class="img-pop-up">
-								<div class="middle">
-									<div class="text align-self-center d-flex"><img src="images/preview.png" alt=""></div>
-								</div>
-							</a>                                
-						</div>
-						<div class="p-inner">
-							<h4>Isometric 3D Extrusion</h4>
-							<div class="cat">Typography</div>
-						</div>
-					</div>
-					<div class="single-portfolio col-sm-4 all photography">
-						<div class="relative">
-							<div class="thumb">
-								<div class="overlay overlay-bg"></div>
-								<img class="image img-fluid" src="{% static 'core/images/p6.jpg' %}" alt="">
-							</div>
-							<a href="{% static 'core/images/p6.jpg' %}" class="img-pop-up">
-								<div class="middle">
-									<div class="text align-self-center d-flex"><img src="{% static 'core/images/preview.png' %}" alt=""></div>
-								</div>
-							</a>                                
-						</div>
-						<div class="p-inner">
-							<h4>White Space Photography</h4>
-							<div class="cat">photography</div>
-						</div>
-					</div>
-				</div>
-			</div>
+                    {% endfor %}
+				</div> <!-- cierre del row de proyectos -->
+			</div><!-- content de proyectos a recorrer -->
+
 		</div>
 	</section>
 	<!-- .section -->
@@ -203,13 +123,15 @@
 
 
                     <!--Elementos a iterar de educacion -->
+                    {% for edu in resu_edu %}
 
 					<div class="resume-item mb-4">
-						<span class="date"><span class="icon-calendar"></span> March 2013 - Present</span>
-						<h3>Masteral in Information Technology</h3>
-						<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
-						<span class="school">New York University</span>
+						<span class="date"><span class="icon-calendar"></span> {{ edu.start_date}} - {{ edu.ending_date }}</span>
+						<h3>{{ edu.career}}</h3>
+						<p>{{ edu.description }}</p>
+						<span class="school">{{ edu.university }}</span>
 					</div>
+                    {% endfor %}
                     <!-- Fin de iterador -->
 
 
@@ -221,12 +143,14 @@
 
             <!-- Elementos a iterar de experiencia -->
 
+                    {% for exp in resu_exp %}
 					<div class="resume-item mb-4">
-						<span class="date"><span class="icon-calendar"></span> March 2013 - Present</span>
-						<h3>Lead Product Designer</h3>
-						<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
-						<span class="school">Github</span>
+						<span class="date"><span class="icon-calendar"></span> {{ exp.start_date }} - {{ exp.ending_date }}</span>
+						<h3>{{ exp.workstation }}</h3>
+						<p>{{ exp.description }}</p>
+						<span class="school">{{ exp.company }}</span>
 					</div>
+                    {% endfor %}
 
                     <!-- Fin de iterador -->
 
@@ -249,7 +173,9 @@
 					<p class="mb-5  ">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
 
 					<p>
-						<a href="#" class="btn btn-secondary px-4 py-2 btn-sm">Download CV</a>
+                        {% for about in about %}
+						<a href="{{ about.curriculum }}" class="btn btn-secondary px-4 py-2 btn-sm" target="_blank" >Download CV</a>
+                        {% endfor %}
 					</p>
 				</div>
 			</div>

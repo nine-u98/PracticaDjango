@@ -3,18 +3,36 @@ from django.db import models
 
 # Create your models here.
 
-class Experiencia(models.Model):
-    Puesto_de_trabajo = models.CharField(max_length=50, blank=False)
-    Descripcion = models.TextField(null=True)
-    Nombre_de_la_empresa = models.CharField(max_length=50, blank=False)
-    Fecha_de_inicio = models.DateField(blank=False, null=True)
-    Fecha_de_fin = models.DateField(blank=False, null=True)
+
+class Experience(models.Model):
+    workstation = models.CharField(max_length=50, blank=False, verbose_name='Puesto de trabajo')
+    description = models.TextField(null=True, verbose_name='Descripcion')
+    company = models.CharField(max_length=50, blank=False, verbose_name='Empresa', default='')
+    start_date = models.DateField(blank=False, null=True, verbose_name='Fecha de inicio')
+    ending_date = models.DateField(blank=False, null=True, verbose_name='Fecha de finalizacion')
+    created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'Experiencia'
+        verbose_name_plural = 'Experiencias'
+        ordering = ['created']
+
+    def __str__(self):
+        return self.workstation
 
 
-class Educacion(models.Model):
+class Education(models.Model):
+    career = models.CharField(max_length=50, blank=False)
+    description = models.TextField(null=True)
+    university = models.CharField(max_length=30, blank=False)
+    start_date = models.DateField(null=False)
+    ending_date = models.DateField(null=False)
+    created = models.DateTimeField(auto_now_add=True)
 
-    Carrera = models.CharField(max_length=50, blank=False)
-    Descripcion_educacion = models.TextField(null=True)
-    Universidad = models.CharField(max_length=30, blank=False)
-    Fechas_de_inicio = models.DateField(null=False)
-    Fechas_de_fin = models.DateField(null=False)
+    class Meta:
+        verbose_name = 'Educación'
+        verbose_name_plural = 'Estudios'
+        ordering = ['created']
+
+    def __str__(self):
+        return self.career

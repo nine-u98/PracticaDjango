@@ -1,5 +1,11 @@
 from django.contrib import admin
 
 # Register your models here.
-from portfolio.models import Proyecto
-admin.site.register(Proyecto)
+from .models import Project
+
+
+class ProjectAdmin(admin.ModelAdmin):
+    readonly_fields = ['created']
+
+
+admin.site.register(Project, ProjectAdmin)

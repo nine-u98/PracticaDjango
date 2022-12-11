@@ -3,23 +3,31 @@ from django.db import models
 
 # Create your models here.
 
-class Proyecto(models.Model):
-    titulo = models.CharField(max_length=120)
-    FRESHMAN = 'FR'
-    SOPHOMORE = 'SO'
-    JUNIOR = 'JR'
-    SENIOR = 'SR'
-    GRADUATE = 'GR'
-    YEAR_IN_SCHOOL_CHOICES = [
-        (FRESHMAN, 'Freshman'),
-        (SOPHOMORE, 'Sophomore'),
-        (JUNIOR, 'Junior'),
-        (SENIOR, 'Senior'),
-        (GRADUATE, 'Graduate'),
+class Project(models.Model):
+    title = models.CharField(max_length=120, verbose_name='Titulo')
+    API = 'API'
+    DJANGO = 'django'
+    FLASK = 'flask'
+    SCRIPT = 'scripts'
+    CAT_CHOICES = [
+        (API, 'APIS'),
+        (DJANGO, 'DJANGO'),
+        (FLASK, 'FLASK'),
+        (SCRIPT, 'SCRIPTS'),
     ]
-    year_in_school = models.CharField(
-        max_length=2,
-        choices=YEAR_IN_SCHOOL_CHOICES,
-        default=FRESHMAN,
+    tags = models.CharField(
+        max_length=7,
+        choices=CAT_CHOICES,
+        default=API,
+        verbose_name='Tags'
     )
-    Imagen = models.ImageField()
+    image_url = models.URLField(blank=False, default="", verbose_name='Imagen url')
+    created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'Proyecto'
+        verbose_name_plural = 'Proyectos'
+        ordering = ['created']
+
+    def __str__(self):
+        return self.title
