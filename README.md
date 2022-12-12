@@ -36,3 +36,13 @@ Una vez concluido, procedemos a iniciar la app
 ```sh
 (env)$ python manage.py runserver
 ```
+
+# Settings
+Agregar conexion a base de datos
+# Para acceder al login
+```sh
+http://127.0.0.1:8000/admin/login/
+```
+usuario: nineu98
+
+password: 123456789
