@@ -13,7 +13,7 @@ Crear un entorno virtual y lo activamos:
 ```sh
 $ python virtualenv venv
 # windows
-$ source venv/Scripts/activate
+$ export venv/Scripts/activate
 # Linux
 $ source venv/bin/activate
 ```
