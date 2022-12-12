@@ -37,7 +37,3 @@ Una vez concluido, procedemos a iniciar la app
 ```sh
 (env)$ python manage.py runserver
 ```
-Y navegue hasta `http://127.0.0.1:8000/`)
-=======
-# PracticaDjango
->>>>>>> master/master
