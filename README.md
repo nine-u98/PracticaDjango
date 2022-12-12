@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Django-Portafolio
 
 ## Descripción

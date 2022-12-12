@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'core',
     'portfolio.apps.PortfolioConfig',
     'resume.apps.ResumeConfig',
-    'about',
 ]
 
 MIDDLEWARE = [
@@ -82,11 +81,11 @@ WSGI_APPLICATION = 'Portafolio.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': env('DATABASE_NAME'),
-        'USER': env('DATABASE_USER'),
-        'PASSWORD': env('DATABASE_PASS'),
-        'HOST':'containers-us-west-128.railway.app',
-        'PORT':6294
+        'NAME': 'portafolio',
+        'USER': 'nine-u98',
+        'PASSWORD': '7147conn',
+        'HOST':'localhost',
+        'PORT':''
     }
 }
 
@@ -134,7 +133,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
-
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
-LOGIN_REDIRECT_URL = 'index'
-LOGIN_URL = 'login'
